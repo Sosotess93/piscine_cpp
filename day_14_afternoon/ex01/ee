@@ -1,0 +1,43 @@
+In file included from Engine.cpp:3:0:
+Errors.hpp:15:10: warning: deprecated covariant return type for ‘virtual char* NasaError::what() const’ [enabled by default]
+   char * what() const;
+          ^
+In file included from /usr/include/c++/4.8/new:40:0,
+                 from /usr/include/c++/4.8/ext/new_allocator.h:33,
+                 from /usr/include/c++/4.8/x86_64-suse-linux/bits/c++allocator.h:33,
+                 from /usr/include/c++/4.8/bits/allocator.h:46,
+                 from /usr/include/c++/4.8/string:41,
+                 from Errors.hpp:5,
+                 from Engine.cpp:3:
+/usr/include/c++/4.8/exception:68:25: warning:   overriding ‘virtual const char* std::exception::what() const’ [enabled by default]
+     virtual const char* what() const _GLIBCXX_USE_NOEXCEPT;
+                         ^
+In file included from Engine.cpp:3:0:
+Errors.hpp:15:10: error: looser throw specifier for ‘virtual char* NasaError::what() const’
+   char * what() const;
+          ^
+In file included from /usr/include/c++/4.8/new:40:0,
+                 from /usr/include/c++/4.8/ext/new_allocator.h:33,
+                 from /usr/include/c++/4.8/x86_64-suse-linux/bits/c++allocator.h:33,
+                 from /usr/include/c++/4.8/bits/allocator.h:46,
+                 from /usr/include/c++/4.8/string:41,
+                 from Errors.hpp:5,
+                 from Engine.cpp:3:
+/usr/include/c++/4.8/exception:68:25: error:   overriding ‘virtual const char* std::exception::what() const throw ()’
+     virtual const char* what() const _GLIBCXX_USE_NOEXCEPT;
+                         ^
+In file included from Engine.cpp:3:0:
+Errors.hpp:8:7: error: looser throw specifier for ‘virtual NasaError::~NasaError()’
+ class NasaError : std::exception
+       ^
+In file included from /usr/include/c++/4.8/new:40:0,
+                 from /usr/include/c++/4.8/ext/new_allocator.h:33,
+                 from /usr/include/c++/4.8/x86_64-suse-linux/bits/c++allocator.h:33,
+                 from /usr/include/c++/4.8/bits/allocator.h:46,
+                 from /usr/include/c++/4.8/string:41,
+                 from Errors.hpp:5,
+                 from Engine.cpp:3:
+/usr/include/c++/4.8/exception:64:13: error:   overriding ‘virtual std::exception::~exception() throw ()’
+     virtual ~exception() _GLIBCXX_USE_NOEXCEPT;
+             ^
+make: *** [Engine.o] Error 1
