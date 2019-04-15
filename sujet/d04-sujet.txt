@@ -1,0 +1,324 @@
+@@@  @@@  @@@   @@@@@@   @@@@@@@   @@@  @@@     @@@@@@@@   @@@@@@   @@@@@@@   
+ @@@  @@@  @@@  @@@@@@@@  @@@@@@@@  @@@  @@@     @@@@@@@@  @@@@@@@@  @@@@@@@@  
+ @@!  @@!  @@!  @@!  @@@  @@!  @@@  @@!  !@@     @@!       @@!  @@@  @@!  @@@  
+ !@!  !@!  !@!  !@!  @!@  !@!  @!@  !@!  @!!     !@!       !@!  @!@  !@!  @!@  
+ @!!  !!@  @!@  @!@  !@!  @!@!!@!   @!@@!@!      @!!!:!    @!@  !@!  @!@!!@!   
+ !@!  !!!  !@!  !@!  !!!  !!@!@!    !!@!!!       !!!!!:    !@!  !!!  !!@!@!    
+ !!:  !!:  !!:  !!:  !!!  !!: :!!   !!: :!!      !!:       !!:  !!!  !!: :!!   
+ :!:  :!:  :!:  :!:  !:!  :!:  !:!  :!:  !:!     :!:       :!:  !:!  :!:  !:!  
+  :::: :: :::   ::::: ::  ::   :::   ::  :::      ::       ::::: ::  ::   :::  
+   :: :  : :     : :  :    :   : :   :   :::      :         : :  :    :   : :  
+                                                                               
+                                                   
+                            @@@@@@@@@@   @@@@@@@@  
+                            @@@@@@@@@@@  @@@@@@@@  
+                            @@! @@! @@!  @@!       
+                            !@! !@! !@!  !@!       
+                            @!! !!@ @!@  @!!!:!    
+                            !@!   ! !@!  !!!!!:    
+                            !!:     !!:  !!:       
+                            :!:     :!:  :!:       
+                            :::     ::    :: ::::  
+                             :      :    : :: ::   
+
+
+Le sujet peut etre modifie jusqu'a 4h avant le rendu final. Pensez donc a
+rafraichir regulierement cette page.
+
+On bablate pas, on bosse!
+
+le dossier de rendu est ~/rendu/cpp/d04/
+
+================================================================================
+*                                   Exercice 0                                 *
+*------------------------------------------------------------------------------*
+*                                                                              *
+*                                                                              *
+*------------------------------------------------------------------------------*
+* Repertoire : ex_0/                     | Points : 4                          *
+*------------------------------------------------------------------------------*
+* Compilateur : gcc                     | Flags : -W -Werror -Wall             *
+*------------------------------------------------------------------------------*
+* Makefile : non                        | Regles : n/a                         *
+*------------------------------------------------------------------------------*
+* Fichiers a rendre : Worker{.h/.c}                                            *
+================================================================================
+
+Faire un module Worker qui contient : 
+
+      - Les proprietes : 
+
+      	- char * name // le nom du worker
+	    - int stamina // la quantite d'energie du worker.
+	
+      - Les fonctions : 
+
+      	- void InitWorker(Worker* this, char const* name);
+	      Initialise le Worker. La stamina doit etre initialisee a 100.
+	
+      	- void DestroyWorker(Worker* this);
+	      Detruit le Worker, la memoire allouee pour les differentes proprietes
+	      doit etre liberee.
+
+      - Les fonctions membres : 
+
+        - int getStamina(Worker* this);
+	      Renvoie la quantite de stamina restante.
+
+        - char const* getName(Worker* this);
+	      Renvoie le nom du travailleur.
+
+	    - int breakStone(Worker* this);
+	      Consomme 10 de stamina et affiche "Ahhh ... Ahhh ... Ahhh!!", suivi
+	      d'un '\n' sur la sortie standard si il y'a assez de stamina et
+	      renvoie la quantite de stamina consommee. Soit 10 ici.
+	      
+	      Si il n'y a pas assez de stamina, renvoie -1.
+          
+
+	    - int cutPotatoes(Worker* this);
+	      Consomme 5 de stamina et affiche "One ... two ... three ... God
+	      Damn it!", suivi d'un '\n' sur la sortie standard si il y'a assez de
+	      stamina et renvoie la quantite de stamina consommee. Soit 5 ici.
+
+	      Si il n'y a pas assez de stamina, renvoie -1.
+
+	    - int cleanFloor(Worker* this);
+          Consomme 3 de stamina et affiche "Pig you!", suivi d'un '\n' sur la
+          sortie standard si il y'a assez de stamina et renvoie la quantite de
+          stamina consommee. Soit 3 ici. 
+
+	      Si il n'y a pas assez de stamina, renvoie -1.
+
+
+
+================================================================================
+*                                   Exercice 1                                 *
+*------------------------------------------------------------------------------*
+*                                                                              *
+*                                                                              *
+*------------------------------------------------------------------------------*
+* Repertoire : ex_1/                     | Points : 4                          *
+*------------------------------------------------------------------------------*
+* Compilateur : gcc                     | Flags : -W -Werror -Wall             *
+*------------------------------------------------------------------------------*
+* Makefile : non                        | Regles : n/a                         *
+*------------------------------------------------------------------------------*
+* Fichiers a rendre : Worker{.h/.c}, Chief{.h/.c}                              *
+================================================================================
+
+
+
+Modifier votre module Worker en ajoutant deux fonctions membres : 
+
+      - void learn_task(Worker* this, char const* name_task, --Un Pointeur sur
+      	  fonction--); 
+      	- Permet au Worker d'apprendre une nouvelle tache.
+	    - name_task correspond au nom de la tache.
+	    - Le pointeur sur fonction sera compatible avec des fonctions
+      	  prototypees comme suit : int func(Worker*);
+	    - C'est a vous de trouver la syntaxe pour le pointeur sur fonction.
+        Si la tache est deja connue, ou autres erreurs, ne rien faire.
+
+      - int do_task(Worker* this, char const* name_task);
+      	Execute une tache du nom de name_task.
+	    Renvoie 1 si il a pu executer la tache. -1 dans le cas  ou la tache
+      	n'est pas connue ou qu'il manque de la stamina (pensez a la valeur de
+      	retour des fonctions  qui servent de taches). 
+
+        TIPS : ce n'est pas do_task qui decremente la quantite de stamina,
+        mais se sont les fonctions qui sont executees par celle ci.
+
+      - Le worker connait de base les taches "breakStone",
+        "cutPotatoes", "cleanFloor".
+
+Faire un module Chief qui contient :
+
+      - La propriete :
+
+      	- Une collection de Worker.
+	      A vous de trouver quel est le meilleur conteneur.
+
+      - Les fonctions :
+
+      	- InitChief(Chief* this);
+	    - DestroyChief(Chief* this);
+          Detruire un chef ne veut pas dire detruire tous ses employes !
+
+      - Les fonctions membres :
+
+	    - void hireWorker(Chief* this, Worker* w);
+	      Ajoute le Worker w dans la collection du Chief.
+          Si le Worker est deja employe, ne rien faire.
+
+	    - void fireWorker(Chief* this, char const* name);
+	      Retire le Worker du nom de name de la collection du Chief.
+          Si le Worker n'existe pas, ne rien faire.
+
+	    - void giveOrder(Chief* this, char const* name, char const* task_name);
+	      Demande au Worker nomme name, d'executer la tache task_name.
+	      Affiche : 
+	  	          - "I'm gonna kick your ass!", suivi d'un \n sur la sortie
+		            standard si le Worker ne peut pas executer son ordre.
+
+		          - "Where is that son of a b..", suivi d'un \n sur la sortie
+	  	            standard si il ne connait pas le nom du Worker.
+	  
+
+================================================================================
+*                                   Exercice 2                                 *
+*------------------------------------------------------------------------------*
+*                                                                              *
+*                                                                              *
+*------------------------------------------------------------------------------*
+* Repertoire : ex_2/                    | Points : 5                           *
+*------------------------------------------------------------------------------*
+* Compilateur : gcc                     | Flags : -W -Werror -Wall             *
+*------------------------------------------------------------------------------*
+* Makefile : non                        | Regles : n/a                         *
+*------------------------------------------------------------------------------*
+* Fichiers a rendre : Worker{.h/.c}, Chief{.h/.c}, Tasks{.h/.c}, Task{.h/.c}   *
+*                                                                              *
+================================================================================
+
+Faire un module Task. Ce module est une implementation d'une liste. Il contient : 
+
+    Les proprietes :
+ 
+        - int duration;
+        La duree de la tache.
+
+        - int stamina;
+        Le cout en stamina de la tache.
+
+        - Un pointeur vers l'element suivant.
+        - Un pointeur sur fonction compatible avec des fonctions prototypees
+          comme tel : int func(Worker*);
+
+          Les fonctions pointees par le pointeur sur fonction enleveront
+          la quantite de stamina indique par le champ stamina.
+
+    Les fonctions : 
+
+        - void InitTask(Task* this, int duration, int stamina, --pointeur sur
+          fonction-- );
+        - void DestroyTask(Task* this); 
+
+    Les fonctions membres : 
+
+        - int getDura(Task* this);
+          Renvoie la duree de la tache.
+
+        - int getStamina(Task* this);
+          Renvoie le cout en stamina de la tache.
+
+        - Task* getNext(Task* this);
+          Renvoie la tache suivante.
+          Renvoie 0 s'il n y'a pas de suivante.
+
+
+Faire un module Tasks. Il contient : 
+
+      Les proprietes : 
+
+          - Task* begin;
+            Le debut de la liste de Task.
+          
+      Les fonctions : 
+
+          - InitTasks(Tasks* this);
+          - DestroyTasks(Tasks* this);
+
+      Les fonctions membres : 
+
+          - void createTasks(Tasks* this, int dura, int stam, --un pointeur sur
+            fonction-- );
+            Ajoute une Task a sa liste de Task.
+
+          - Task* getTasks(Tasks* this);
+            Renvoie le pointeur sur le debut de la liste.
+
+          - void sortTasks(Tasks* this, --un pointeur sur fonction-- );
+            Utilise le pointeur sur fonction pour trier la liste de Task.
+            Le pointeur sur fonction sera compatible avec des fonctions ayant
+            le prototype suivant : void func(Tasks*);
+
+
+
+Modifier votre module Worker et ajouter : 
+
+
+    Une propriete :
+
+       - Tasks* t;
+         Ca sera la liste de taches a effectuer par votre Worker (cf ci dessus)
+       
+    Deux fonctions membres : 
+         
+         - void getDailyTasks(Worker* this, Tasks* task);
+           assigne task, au membre t du Worker;
+
+         - void executeDaylyTasks(Worker* this, --un pointeur sur fonction-- );
+           Votre but est d'executer un maximum de Task en tenant compte de la
+           stamina du Worker. Vous ne devez pas executer plus de taches que
+           votre pauvre Worker peut en faire!
+
+           Votre Worker doit executer ses taches dans le bon ordre.
+           Le pointeur sur fonction pointera vers une fonction de tri qui va
+           vous servir a trier votre liste.
+
+           Si le Worker ne peut pas executer une tache car il n'a plus de
+           stamina, vous devez afficher sur la sortie standard : 
+           "I'm afraid i can't do that master ..." suivi d'un \n, et ne pas
+           executer les taches restantes.
+
+           Attention ce n'est pas executeDaylyTasks qui decremente la quantite
+           de stamina du Worker, mais la fonction encapsulee dans la Task.
+
+
+
+================================================================================
+*                                   Exercice 3                                 *
+*------------------------------------------------------------------------------*
+*                                                                              *
+*                                                                              *
+*------------------------------------------------------------------------------*
+* Repertoire : ex_3/                    | Points : 7                           *
+*------------------------------------------------------------------------------*
+* Compilateur : gcc                     | Flags : -W -Werror -Wall             *
+*------------------------------------------------------------------------------*
+* Makefile : non                        | Regles : n/a                         *
+*------------------------------------------------------------------------------*
+* Fichiers a rendre : Worker{.h/.c}, Chief{.h/.c}, Tasks{.h/.c}, Task{.h/.c}   *
+* Sort{.h/.c}                                                                  *
+================================================================================
+
+           
+Vous devez maintenant faire les differentes fonctions de tri qui vous serviront
+a trier vos listes de taches. Ces fonctions sont a placer dans les fichiers
+Sort{.c/.h}
+
+        - void selectionSort(Tasks* task);
+          Vous devez implementer l'algorithme de tri par selection.
+          http://fr.wikipedia.org/wiki/Tri_par_s%C3%A9lection
+          
+        
+        - void fusionSort(Tasks* task);
+          Vous devez implementer l'algorithme de tri par fusion.
+          Utilisez la maniere recursive.
+          http://fr.wikipedia.org/wiki/Tri_fusion
+
+
+        - void bubbleSort(Tasks* task);
+          Vous devez implementer l'algorithme de tri a bulles.
+          http://fr.wikipedia.org/wiki/Tri_%C3%A0_bulles
+
+        - void quickSort(Tasks* task);
+          Vous devez implementer l'algorithme de tri rapide.
+          http://fr.wikipedia.org/wiki/Tri_rapide
+
+
+toutes ces fonction devront trier les listes selon un ordre croissant
+base sur le quotient stamina/duraration. Cela permettra a votre gentil Worker
+d'executer un maximum de taches en un temps record et passer le reste de sa
+journee a glander ... comme vous (ou ce qu'il en reste).
